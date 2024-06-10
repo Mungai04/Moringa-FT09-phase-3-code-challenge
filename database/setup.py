@@ -3,13 +3,14 @@ from .connection import get_db_connection
 def create_tables():
     conn = get_db_connection()
     cursor = conn.cursor()
-    
+    #creates author table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS authors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL
         )
     ''')
+    #create magazine table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS magazines (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,6 +18,7 @@ def create_tables():
             category TEXT NOT NULL
         )
     ''')
+    # create article table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS articles (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,3 +33,5 @@ def create_tables():
 
     conn.commit()
     conn.close()
+    if __name__ == "__main__":
+        create_tables
